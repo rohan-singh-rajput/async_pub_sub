@@ -15,11 +15,6 @@
 
 #include "../CoordinatorCore/Config.h"
 
-/*
- * Data structure representing a registered publisher.
- * - Each publisher has a unique ID and a name.
- * - Stores up to MAX_PUBLISHED_MSG message IDs it has published.
- */
 typedef struct publisher_db_entry_t {
   std::string pub_name;  // Unique name of the publisher
   uint32_t publisher_id; // Unique publisher ID
@@ -30,11 +25,7 @@ typedef struct publisher_db_entry_t {
   }
 } publisher_db_entry_t;
 
-/*
- * Data structure representing a registered subscriber.
- * - Each subscriber has a unique ID and name.
- * - Keeps track of message IDs it's interested in.
- */
+
 typedef struct subscriber_db_entry_t {
   std::string sub_name;                     // Unique name of the subscriber
   uint32_t subscriber_id;                   // Unique subscriber ID
@@ -43,11 +34,8 @@ typedef struct subscriber_db_entry_t {
   subscriber_db_entry_t() : sub_name(""), subscriber_id(0) {}
 } subscriber_db_entry_t;
 
-/*
- * Database entry that links a published message code to subscribers.
- * - Used by the coordinator to determine which subscribers are interested
- *   in a specific message published by a publisher.
- */
+
+
 typedef struct pub_sub_db_entry_t {
   uint32_t publish_msg_code; // Unique message code from a publisher
   std::vector<std::shared_ptr<subscriber_db_entry_t>> subscribers; // Subscribers for this message
