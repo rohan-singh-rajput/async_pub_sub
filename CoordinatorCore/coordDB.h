@@ -10,7 +10,7 @@ struct publisher_db_entry_t;
 struct subscriber_db_entry_t;
 struct pub_sub_db_entry_t;
 
-// Publisher DB operations
+/* Publisher DB operations */
 publisher_db_entry_t *publisher_db_create(uint32_t pub_id,
                                           const std::string &pub_name);
 
