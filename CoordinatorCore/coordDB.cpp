@@ -174,6 +174,9 @@ bool subscriber_subscribe_msg(uint32_t sub_id, uint32_t msg_id) {
     throw std::runtime_error("Invalid message ID (0) for subscriber: " +
                              sub_entry->sub_name);
   }
+
+  return true; // To-Do Actual message subscription logic is not implemented
+  // in this placeholder
 }
 
 bool subscriber_unsubscribe_msg(uint32_t sub_id, uint32_t msg_id) {
