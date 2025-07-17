@@ -38,3 +38,6 @@ pub_sub_db_create(uint32_t msg_id,
 void pub_sub_db_delete(uint32_t msg_id, uint32_t sub_id);
 
 pub_sub_db_entry_t *pub_sub_db_get(uint32_t msg_id);
+
+/* Utilities */
+void coord_db_display();

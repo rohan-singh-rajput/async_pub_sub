@@ -2,7 +2,9 @@
 
 #include <cstdint>
 #include <cstring>
+#include <iostream>
 #include <memory>
+#include <ostream>
 #include <stdexcept>
 #include <unordered_map>
 
@@ -101,7 +103,6 @@ std::shared_ptr<subscriber_db_entry_t> subscriber_db_create(uint32_t sub_id,
 
   sub_entry->subscriber_id = sub_id;
   std::strncpy(sub_entry->sub_name, sub_name, 64);
-  sub_entry->sub_name[64] = '\0'; // Ensure null-termination
 
   // Insert into DB
   sub_db[sub_id] = sub_entry;
@@ -214,4 +215,27 @@ pub_sub_db_entry_t *pub_sub_db_get(uint32_t msg_id) {
     return it->second.get();
   }
   return nullptr;
+}
+
+void coord_db_display() {
+
+  printf("Publisher DB\n");
+  for (auto it = pub_db.begin(); it != pub_db.end(); it++) {
+    printf("Publisher ID : %u, Publisher Name : %s\n", it->second->publisher_id,
+           it->second->pub_name);
+  }
+
+  printf("Subscriber DB\n");
+  for (auto it = sub_db.begin(); it != sub_db.end(); it++) {
+    printf("Subscriber ID : %u, Subscriber Name : %s\n",
+           it->second->subscriber_id, it->second->sub_name);
+  }
+
+  printf("Pub-Sub DB\n");
+  for (auto it = pub_sub_db.begin(); it != pub_sub_db.end(); it++) {
+    printf("Message ID : %u\n", it->second->published_msg_code);
+    for (auto &sub : it->second->subscribers) {
+      printf("Subscriber ID : %u\n", sub->subscriber_id);
+    }
+  }
 }
