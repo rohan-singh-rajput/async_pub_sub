@@ -1,16 +1,17 @@
 # Compiler and flags
-CC= g++ -std=c++20
-AR=ar
-CFLAGS=-g -Wall -Wextra -Werror -c
-LDFLAGS=-lpthread
+CC = g++ -std=c++20
+AR = ar
+CFLAGS = -g -Wall -Wextra -Werror -c
+LDFLAGS = -lpthread
 
 # Targets
-TARGET2=CoordinatorCore/libcoord.a
-TARGET3=CoordinatorCore/coordinator
+TARGET2 = CoordinatorCore/libcoord.a
+TARGET3 = CoordinatorCore/coordinator
 
 # Object files
-COORDINATOR_OBJS=CoordinatorCore/coord_start.o \
-                 CoordinatorCore/coordDb.o
+COORDINATOR_OBJS = CoordinatorCore/coord_start.o \
+                   CoordinatorCore/coordDb.o \
+                   Common/cmsgOp.o
 
 # Default target
 all: ${TARGET2} ${TARGET3}
@@ -35,9 +36,13 @@ CoordinatorCore/coord_start.o: CoordinatorCore/coord_start.cpp
 CoordinatorCore/coordDb.o: CoordinatorCore/coordDb.cpp CoordinatorCore/coordDb.h
 	${CC} ${CFLAGS} CoordinatorCore/coordDb.cpp -o CoordinatorCore/coordDb.o
 
+Common/cmsgOp.o: Common/cmsgOp.cpp Common/cmsgOp.h
+	${CC} ${CFLAGS} Common/cmsgOp.cpp -o Common/cmsgOp.o
+
 # Clean target
 .PHONY: clean
 clean:
 	rm -f CoordinatorCore/*.o
 	rm -f CoordinatorCore/*.a
+	rm -f Common/*.o
 	rm -f CoordinatorCore/coordinator

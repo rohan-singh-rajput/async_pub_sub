@@ -1,6 +1,6 @@
 // #define CATCH_CONFIG_MAIN
 // #include "../CoordinatorCore/coordDb.h"
-// #include <catch2/catch.hpp>
+// #include <catch2/catch.h>
 
 // TEST_CASE("Publisher DB create and delete") {
 //   publisher_db_create(101, (char *)"PublisherA");
