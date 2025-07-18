@@ -33,7 +33,8 @@ void coordinator_main() {
   // coordinator_fork_distribution_threads();
 
   while (1) {
-    initialize_dummy_data(); // Add dummy entries
+    // initialize_dummy_data();
+    // Add dummy entries
     coord_db_display();
     getchar(); // Press Enter to refresh display
   }
