@@ -6,6 +6,9 @@
 #define COORD_IP_ADDR 2130706433 // 127.0.0.1 in decimal (0x7F000001)
 #define COORD_UDP_PORT 40000
 
+#define TLV_CODE_NAME 1
+#define TLV_CODE_NAME_LEN 32
+
 typedef enum msg_type_ {
   SUBS_TO_COORD,
   COORD_TO_SUBS,
@@ -19,7 +22,8 @@ typedef enum sub_msg_type_ {
   SUB_MSG_DELETE,     // Publisher unpublishing OR Subscriber unsubscribing
   SUB_MSG_REGISTER,   // Publisher or Subscriber registering with coordinator
   SUB_MSG_UNREGISTER, // Unregistering from coordinator
-  SUB_MSG_ERROR       // Error message
+  SUB_MSG_ERROR,      // Error message
+  SUB_MSG_ID_ALLOC_SUCCESS
 } sub_msg_type_t;
 
 typedef enum cmsg_pr_ {
@@ -75,9 +79,42 @@ static inline const char *sub_msg_type_to_string(sub_msg_type_t sub_msg_type) {
     return "SUB_MSG_UNREGISTER";
   case SUB_MSG_ERROR:
     return "SUB_MSG_ERROR";
+  case SUB_MSG_ID_ALLOC_SUCCESS:
+    return "SUB_MSG_ID_ALLOC_SUCCESS";
   default:
     return "UNKNOWN_SUB_MSG_TYPE";
   }
 }
+
+// Error codes
+typedef enum error_codes_ { ERROR_TLV_MISSING } error_codes_t;
+
+// TLV code to string
+static inline const char *tlv_str(int tlv_code_cpoint) {
+  switch (tlv_code_cpoint) {
+  case TLV_CODE_NAME:
+    return "TLV_CODE_NAME";
+  default:
+    return "UNKNOWN";
+  }
+
+  return "UNKNOWN";
+}
+
+// TLV code to data length
+static int tlv_data_len(int tlv_code_point) {
+  switch (tlv_code_point) {
+  case TLV_CODE_NAME:
+    return TLV_CODE_NAME_LEN;
+  default:
+    return 0;
+  }
+
+  return 0;
+}
+
+static inline const char *tlv_str(int tlv_code_cpoint);
+
+static int tlv_data_len(int tlv_code_point);
 
 #endif // __COMM_TYPES__

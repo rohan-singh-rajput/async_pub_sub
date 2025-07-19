@@ -6,6 +6,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+static uint32_t coord_generate_id() {
+  static uint32_t id = 0;
+  return ++id;
+}
+
 cmsg_t *coordinator_process_publisher_msg(cmsg_t *msg, size_t bytes_read) {
 
   printf("Coordinator : Processing Publisher Message:\n");
