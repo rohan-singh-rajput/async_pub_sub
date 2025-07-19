@@ -57,7 +57,7 @@ static inline char *tlv_buffer_get_particular_tlv(
     *tlv_data_len = tlv_len;
     return (tlv_value);
   }
-  ITERATE_TLV_END(tlv_buff, tlv_type, tlv_len, tlv_value, tlv_buff_size);
+  ITERATE_TLV_END;
 
   *tlv_data_len = 0;
 

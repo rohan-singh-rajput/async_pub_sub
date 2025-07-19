@@ -11,6 +11,7 @@ TARGET3 = CoordinatorCore/coordinator
 # Object files
 COORDINATOR_OBJS = CoordinatorCore/coord_start.o \
                    CoordinatorCore/coordDb.o \
+				   CoordinatorCore/coord_msg.o \
                    Common/cmsgOp.o
 
 # Default target
@@ -38,6 +39,9 @@ CoordinatorCore/coordDb.o: CoordinatorCore/coordDb.cpp CoordinatorCore/coordDb.h
 
 Common/cmsgOp.o: Common/cmsgOp.cpp Common/cmsgOp.h
 	${CC} ${CFLAGS} Common/cmsgOp.cpp -o Common/cmsgOp.o
+
+CoordinatorCore/coord_msg.o:CoordinatorCore/coord_msg.cpp
+	${CC} ${CFLAGS} CoordinatorCore/coord_msg.cpp -o CoordinatorCore/coord_msg.o
 
 # Clean target
 .PHONY: clean

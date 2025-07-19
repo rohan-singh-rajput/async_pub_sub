@@ -1,0 +1,17 @@
+# Object files
+*.o
+
+# Static libraries
+*.a
+
+# Executables (optional, specific ones too)
+CoordinatorCore/coordinator
+CoordinatorCore/coord_udp_server
+
+# General backup/swap files (optional but useful)
+*~
+*.swp
+*.tmp
+
+# Optional build artifacts directory
+/build/
