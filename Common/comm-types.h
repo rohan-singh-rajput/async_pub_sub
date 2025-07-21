@@ -109,12 +109,7 @@ static int tlv_data_len(int tlv_code_point) {
   default:
     return 0;
   }
-
   return 0;
 }
-
-static inline const char *tlv_str(int tlv_code_cpoint);
-
-static int tlv_data_len(int tlv_code_point);
 
 #endif // __COMM_TYPES__
